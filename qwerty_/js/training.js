@@ -43,11 +43,11 @@ function displayText(wordsArray) {
         textDisplay.appendChild(document.createTextNode(' '));
     });
     
-    if (currentWordIndex < words.length) {
-        const cursor = document.createElement('span');
-        cursor.className = 'cursor';
-        textDisplay.appendChild(cursor);
-    }
+    // if (currentWordIndex < words.length) {
+    //     const cursor = document.createElement('span');
+    //     cursor.className = 'cursor';
+    //     textDisplay.appendChild(cursor);
+    // }
 }
 
 function startTypingTest() {
@@ -410,4 +410,5 @@ function initTraining() {
 window.initTraining = initTraining;
 window.updateTestDuration = updateTestDuration;
 window.setDifficulty = setDifficulty;
+
 window.resetTest = resetTest;
