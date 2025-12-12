@@ -1,0 +1,30 @@
+.about-card {
+    background-color: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.about-card h4 {
+    color: var(--text-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.about-card p, .about-card li {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.about-card ul, .about-card ol {
+    margin-bottom: 15px;
+}

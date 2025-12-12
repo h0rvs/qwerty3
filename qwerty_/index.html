@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qwerty - Тренажер печати</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/training.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-keyboard"></i>
+                <span>qwerty</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-section="training">Тренировка</a></li>
+                    <li><a href="#" data-section="stats">Статистика</a></li>
+                    <li><a href="#" data-section="settings">Настройки</a></li>
+                    <li><a href="#" data-section="about">О проекте</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+        
+        <section id="training-section" class="section active">
+            <div class="main-content">
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-value" id="wpm">0</div>
+                        <div class="stat-label">слов/мин</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="accuracy">100%</div>
+                        <div class="stat-label">точность</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="timer">60</div>
+                        <div class="stat-label">секунд</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="words-count">0</div>
+                        <div class="stat-label">слов</div>
+                    </div>
+                </div>
+                
+                <div class="typing-area">
+                    <div class="text-display" id="text-display">
+                    </div>
+                    
+                    <div class="input-area">
+                        <input type="text" id="text-input" placeholder="Начните печатать здесь, чтобы запустить таймер..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        <button class="control-btn" id="reset-btn">
+                            <i class="fas fa-redo"></i> Сбросить
+                        </button>
+                    </div>
+                    
+                    <div class="controls">
+                        <button class="control-btn" id="pause-btn">
+                            <i class="fas fa-pause"></i> Пауза
+                        </button>
+                        <button class="control-btn" id="change-text-btn">
+                            <i class="fas fa-sync"></i> Сменить текст
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="results-container hidden" id="results-container">
+                    <div class="results-card">
+                        <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Результаты теста</h3>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">Скорость</div>
+                                <div class="result-value" id="result-wpm">0</div>
+                                <div class="result-unit">слов/мин</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Точность</div>
+                                <div class="result-value" id="result-accuracy">100%</div>
+                                <div class="result-unit"></div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Слов</div>
+                                <div class="result-value" id="result-words">0</div>
+                                <div class="result-unit">правильно</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Символов</div>
+                                <div class="result-value" id="result-chars">0</div>
+                                <div class="result-unit">правильно</div>
+                            </div>
+                        </div>
+                        <div class="results-actions">
+                            <button class="control-btn" id="continue-btn">
+                                <i class="fas fa-redo"></i> Новый тест
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-options">
+                    <div class="text-option active" data-length="10">10 слов</div>
+                    <div class="text-option" data-length="25">25 слов</div>
+                    <div class="text-option" data-length="50">50 слов</div>
+                    <div class="text-option" data-length="100">100 слов</div>
+                    <div class="text-option" data-type="quote">Цитаты</div>
+                    <div class="text-option" data-type="code">Код</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="stats-section" class="section">
+            <div class="stats-container">
+                <h2 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Ваша статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Лучшая скорость</h3>
+                        <div class="stat-value">78 <span class="stat-unit">слов/мин</span></div>
+                        <div class="stat-date">12.03.2023</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Средняя скорость</h3>
+                        <div class="stat-value">64 <span class="stat-unit">слов/мин</span></div>
+                        <div class="stat-total">Всего тестов: 24</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Лучшая точность</h3>
+                        <div class="stat-value">98<span class="stat-unit">%</span></div>
+                        <div class="stat-date">05.03.2023</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Общее время</h3>
+                        <div class="stat-value">3<span class="stat-unit">ч 45м</span></div>
+                        <div class="stat-detail">Практики</div>
+                    </div>
+                </div>
+                <div class="history-chart">
+                    <h3 style="margin: 30px 0 15px 0;">История прогресса</h3>
+                    <div class="chart-placeholder" style="background: var(--secondary-bg); height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
+                        График вашего прогресса будет здесь
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="settings-section" class="section">
+            <div class="settings-container">
+                <h2 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Настройки</h2>
+                <div class="settings-grid">
+                    <div class="setting-group">
+                        <h3>Время теста</h3>
+                        <div class="setting-options">
+                            <button class="setting-option">15 сек</button>
+                            <button class="setting-option">30 сек</button>
+                            <button class="setting-option active">60 сек</button>
+                            <button class="setting-option">120 сек</button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Сложность</h3>
+                        <div class="setting-options">
+                            <button class="setting-option active">Легкая</button>
+                            <button class="setting-option">Средняя</button>
+                            <button class="setting-option">Сложная</button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Звуки</h3>
+                        <div class="setting-switch">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span>Включить звуки клавиш</span>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Цвет темы</h3>
+                        <div class="color-options">
+                            <div class="color-option active" style="background: #ff9d00;" data-color="orange"></div>
+                            <div class="color-option" style="background: #4CAF50;" data-color="green"></div>
+                            <div class="color-option" style="background: #2196F3;" data-color="blue"></div>
+                            <div class="color-option" style="background: #9C27B0;" data-color="purple"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-actions">
+                    <button class="settings-btn" id="save-settings">Сохранить настройки</button>
+                    <button class="settings-btn secondary" id="reset-settings">Сбросить к стандартным</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about-section" class="section">
+            <div class="about-container">
+                <h2 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">О проекте</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3><i class="fas fa-keyboard"></i> qwerty</h3>
+                        <p>Этот тренажер печати создан для улучшения скорости и точности вашей печати. Вдохновлен популярным сайтом MonkeyType.</p>
+                        
+                        <h4 style="margin-top: 20px;">Возможности:</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Тренировка с разными типами текстов</li>
+                            <li>Статистика скорости и точности</li>
+                            <li>Несколько режимов сложности</li>
+                            <li>Темная и светлая темы</li>
+                            <li>Адаптивный дизайн для всех устройств</li>
+                        </ul>
+                        
+                        <h4 style="margin-top: 20px;">Советы для улучшения:</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Регулярно практикуйтесь</li>
+                            <li>Следите за правильной постановкой пальцев</li>
+                            <li>Не смотрите на клавиатуру</li>
+                            <li>Начинайте с медленной, но точной печати</li>
+                        </ol>
+                        
+                        <div class="about-footer" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center;">
+                            <p>Версия 1.0.0 | Создано для любителей печатать</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>qwerty © 2025 | Тренажер для повышения скорости печати</p>
+        </footer>
+    </div>
+    <script src="js/utils.js"></script>
+    <script src="js/training.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/about.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof loadTheme === 'function') {
+                loadTheme();
+            }
+            
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            initTraining();
+            initStats();
+            initSettings();
+            initAbout();
+            
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionName = this.getAttribute('data-section');
+                    switchSection(sectionName);
+                });
+            });
+            
+            switchSection('training');
+        });
+    </script>
+</body>
+</html>
